@@ -38,19 +38,4 @@ function search(targets, keyword, flags) {
   }
 }
 
-/**
- * ファイルのデータを base64 文字列に変換する
- * @param {Object} file File オブジェクト
- * @return {Object} Promise オブジェクト
- */
-function dataURLBuilder(file) {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.addEventListener('load', (event) => {
-      resolve(event.target.result);
-    }, false);
-  });
-}
-
-export { removeAllChildren, listStyle, search, dataURLBuilder };
+export { removeAllChildren, listStyle, search };
