@@ -30,4 +30,4 @@ function getAsDataURL(file) {
   });
 }
 
-export { getAsDataURL, getAsDataURL };
+export { getAsDataURL, getAsText };
