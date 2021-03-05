@@ -109,6 +109,7 @@ function handleFiles(event) {
         spanElement.contentEditable = false;
         contentArea.appendChild(spanElement);
       });
+      break;
     default:
       alert('未対応の形式です');
       break;
