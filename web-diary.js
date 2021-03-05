@@ -2,7 +2,8 @@
 
 // モジュール
 import * as errorHandler from './modules/error-handler.js';
-import { removeAllChildren, listStyle, search, dataURLBuilder} from './modules/util.js';
+import { removeAllChildren, listStyle, search } from './modules/util.js';
+import { getAsDataURL, getAsText } from './modules/handle-files.js';
 
 // タイトル
 const titleElement = document.getElementsByTagName('title')[0];
@@ -72,8 +73,9 @@ function handleFiles(event) {
   }
   switch (type) {
     case 'video':
-      dataURLBuilder(file).then((url) => {
+      getAsDataURL(file).then((url) => {
         const videoElement = document.createElement('video');
+        videoElement.classList.add('video-file');
         videoElement.src = url;
         videoElement.controls = true;
         videoElement.contentEditable = false;
@@ -81,8 +83,9 @@ function handleFiles(event) {
       });
       break;
     case 'audio':
-      dataURLBuilder(file).then((url) => {
+      getAsDataURL(file).then((url) => {
         const audioElement = document.createElement('audio');
+        audioElement.classList.add('audio-file');
         audioElement.src = url;
         audioElement.controls = true;
         audioElement.contentEditable = false;
@@ -90,13 +93,22 @@ function handleFiles(event) {
       });
       break;
     case 'image':
-      dataURLBuilder(file).then((url) => {
+      getAsDataURL(file).then((url) => {
         const imageElement = document.createElement('img');
+        imageElement.classList.add('image-file');
         imageElement.src = url;
         imageElement.contentEditable = false;
         contentArea.appendChild(imageElement);
       });
       break;
+    case 'text':
+      getAsText(file).then((text) => {
+        const spanElement = document.createElement('span');
+        spanElement.classList.add('text-file');
+        spanElement.innerText = text;
+        spanElement.contentEditable = false;
+        contentArea.appendChild(spanElement);
+      });
     default:
       alert('未対応の形式です');
       break;
