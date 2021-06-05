@@ -66,11 +66,10 @@ editTools.file.addEventListener('change', handleFiles, false);
 function handleFiles(event) {
   const file = event.target.files[0];
   const type = file.type.split('/')[0];
-  if ((1 * 1024 * 1024) <= file.size) {
-    alert('1MB以下のファイルを添付できます');
-    editTools.file.value = null;
-    return;
-  }
+//   if ((1 * 1024 * 1024) <= file.size) {
+//     alert('1MB以下のファイルを添付できます');
+//     return;
+//   }
   switch (type) {
     case 'video':
       getAsDataURL(file).then((url) => {
